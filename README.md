@@ -1,6 +1,7 @@
-# Kafka Connect Sample Connector
+# Kafka Connect Sample MySQL Connector
 
-This repo contains a sample project that can be used to start off your own source connector for Kafka Connect.
+This repo contains a sample mySQL Connector for Kafka. 
+The connector reads a table of subscriptions from a database, forwarding them to a kafka topics. 
 
 ## Building the connector
 
@@ -27,7 +28,13 @@ Start the environment with the following command:
 docker-compose up
 ```
 
-Wait until all containers are up so you can start the testing.
+**NB: Wait until all containers are up so you can start the testing.**
+In particular, in order to keep track of the connect building, use the log on the connect container. 
+
+```bash
+docker-compose logs -f connect
+```
+
 
 ### 2 - Install the connector
 
