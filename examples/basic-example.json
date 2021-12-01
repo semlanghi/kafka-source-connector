@@ -1,0 +1,14 @@
+{
+    "name": "basic-example-5",
+    "config": {
+        "connector.class": "com.acme.kafka.connect.sample.SampleMySQLConnector",
+        "example.db.hostname": "db",
+        "example.db.query": "SELECT * FROM subscription WHERE type='daily' LIMIT 100",
+        "example.kafka.topic": "mytopic5",
+        "example.db.port": 3306,
+        "example.db.user": "root",
+        "example.db.database": "kafka_test",
+        "example.db.password": "admin",
+        "tasks.max": "1"
+    }
+}
