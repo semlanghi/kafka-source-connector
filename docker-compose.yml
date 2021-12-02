@@ -72,4 +72,5 @@
           CONNECT_PLUGIN_PATH: '/usr/share/java'
         volumes:
           - ./target/components/packages/you-kafka-connect-sample-0.1.0/you-kafka-connect-sample-0.1.0/lib:/usr/share/java/kafka-connect-sample
+          - ./files:/etc/examplefiles
 

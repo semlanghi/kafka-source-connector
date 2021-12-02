@@ -1,4 +1,4 @@
-package com.acme.kafka.connect.sample;
+package com.acme.kafka.connect.sample.mysql;
 
 import java.util.Map;
 
@@ -12,6 +12,12 @@ public class SampleMySQLConnectorConfig extends AbstractConfig {
     public SampleMySQLConnectorConfig(final Map<?, ?> originalProps) {
         super(CONFIG_DEF, originalProps);
     }
+
+    public static final String SQL_QUERY_CONFIG = "example.db.query";
+    private static final String SQL_QUERY_DOC = "The SQL query to run";
+
+    public static final String KAFKA_TOPIC_CONFIG = "example.kafka.topic";
+    private static final String KAFKA_TOPIC_DOC = "This is the topic to write to.";
 
     public static final String HOST_PARAM_CONFIG = "example.db.hostname";
     private static final String HOST_PARAM_DOC = "This is the defined name of the host.";
@@ -72,7 +78,17 @@ public class SampleMySQLConnectorConfig extends AbstractConfig {
             Type.INT,
             MONITOR_THREAD_TIMEOUT_DEFAULT,
             Importance.HIGH,
-            MONITOR_THREAD_TIMEOUT_DOC);
+            MONITOR_THREAD_TIMEOUT_DOC)
+        .define(
+            KAFKA_TOPIC_CONFIG,
+            Type.STRING,
+            Importance.HIGH,
+            KAFKA_TOPIC_DOC)
+        .define(
+            SQL_QUERY_CONFIG,
+            Type.STRING,
+            Importance.HIGH,
+            SQL_QUERY_DOC);
     }
 
 }

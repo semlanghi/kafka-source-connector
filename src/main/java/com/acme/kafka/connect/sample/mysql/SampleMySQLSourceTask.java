@@ -1,19 +1,19 @@
-package com.acme.kafka.connect.sample;
+package com.acme.kafka.connect.sample.mysql;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import com.acme.kafka.connect.sample.PropertiesUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.kafka.connect.data.Schema;
 import org.apache.kafka.connect.source.SourceRecord;
 import org.apache.kafka.connect.source.SourceTask;
 
-import static com.acme.kafka.connect.sample.SampleMySQLConnectorConfig.*;
+import static com.acme.kafka.connect.sample.mysql.SampleMySQLConnectorConfig.*;
 
 public class SampleMySQLSourceTask extends SourceTask {
 
@@ -21,9 +21,8 @@ public class SampleMySQLSourceTask extends SourceTask {
 
     private SampleMySQLConnectorConfig config;
     private int monitorThreadTimeout;
-    private List<String> sources;
     private Connection connection;
-    private PreparedStatement preparedStatement;
+    private int offset = 0;
 
     public SampleMySQLSourceTask() {
     }
@@ -35,12 +34,8 @@ public class SampleMySQLSourceTask extends SourceTask {
 
     @Override
     public void start(Map<String, String> properties) {
-        log.info("Starting a TASKKKKKKKKKKKKK.");
         config = new SampleMySQLConnectorConfig(properties);
         monitorThreadTimeout = config.getInt(MONITOR_THREAD_TIMEOUT_CONFIG);
-        String sourcesStr = properties.get("sources");
-        sources = Arrays.asList(sourcesStr.split(","));
-
         try {
             connection = DriverManager.getConnection(
                     "jdbc:mysql://" + config.getString(HOST_PARAM_CONFIG) + ":"
@@ -55,23 +50,26 @@ public class SampleMySQLSourceTask extends SourceTask {
     public List<SourceRecord> poll() throws InterruptedException {
         Thread.sleep(monitorThreadTimeout);
         List<SourceRecord> records = new ArrayList<>();
-        for (String source : sources) {
-            log.info("Polling data from the source '" + source + "'");
-            try {
+        String sql = config.getString(SQL_QUERY_CONFIG);
+        try {
 
-                ResultSet set = connection.prepareStatement("SELECT * FROM " + source + ";").executeQuery();
-
-                while (set.next()) {
-                    String value = "Data from " + source + ": id " + set.getLong(1);
-                    records.add(new SourceRecord(
-                            Collections.singletonMap("source", source),
-                            Collections.singletonMap("offset", 0),
-                            source, null, null, null, Schema.BYTES_SCHEMA,
-                            value.getBytes()));
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
+            if (offset > 0) {
+                sql = sql + " " + "OFFSET " + offset + ";";
             }
+
+            ResultSet set = connection.prepareStatement(sql).executeQuery();
+
+            while (set.next()) {
+                String value = "Data from " + sql + ": id " + set.getLong(1);
+                records.add(new SourceRecord(
+                        Collections.singletonMap("sql", sql),
+                        Collections.singletonMap("offset", 0),
+                        config.getString(KAFKA_TOPIC_CONFIG), null, null, null, Schema.BYTES_SCHEMA,
+                        value.getBytes()));
+                offset++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return records;
     }
