@@ -3,7 +3,7 @@
     "config": {
         "connector.class": "com.acme.kafka.connect.solutions.http.SampleHTTPConnector",
         "example.file.url": "https://github.com/semlanghi/kafka-source-connector/blob/master/files/sub_file.csv",
-        "example.kafka.topic": "filetopic",
+        "example.kafka.topic": "httpT",
         "monitor.thread.timeout": 1000,
         "tasks.max": "1"
     }
