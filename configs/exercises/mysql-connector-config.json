@@ -1,7 +1,7 @@
 {
     "name": "mysql-exercise",
     "config": {
-        "connector.class": "com.acme.kafka.connect.solutions.mysql.SampleMySQLConnector",
+        "connector.class": "com.acme.kafka.connect.exercises.mysql.SampleMySQLConnector",
         "tasks.max": "1"
     }
 }

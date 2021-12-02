@@ -1,7 +1,7 @@
 {
     "name": "file-exercise",
     "config": {
-        "connector.class": "com.acme.kafka.connect.solutions.file.SampleFileConnector",
+        "connector.class": "com.acme.kafka.connect.exercises.file.SampleFileConnector",
         "monitor.thread.timeout": 1000,
         "tasks.max": "1"
     }

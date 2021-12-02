@@ -1,7 +1,7 @@
 {
     "name": "http-exercise",
     "config": {
-        "connector.class": "com.acme.kafka.connect.solutions.http.SampleHTTPConnector",
+        "connector.class": "com.acme.kafka.connect.exercises.http.SampleHTTPConnector",
         "monitor.thread.timeout": 1000,
         "tasks.max": "1"
     }
