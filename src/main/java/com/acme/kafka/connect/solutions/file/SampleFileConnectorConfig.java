@@ -32,22 +32,23 @@ public class SampleFileConnectorConfig extends AbstractConfig {
     }
 
     private static void addParams(final ConfigDef configDef) {
-        configDef.define(
-            FILE_NAME_PARAM_CONFIG,
-            Type.STRING,
-            Importance.HIGH,
-            FILE_NAME_PARAM_DOC)
-        .define(
-            MONITOR_THREAD_TIMEOUT_CONFIG,
-            Type.INT,
-            MONITOR_THREAD_TIMEOUT_DEFAULT,
-            Importance.HIGH,
-            MONITOR_THREAD_TIMEOUT_DOC)
-        .define(
-            KAFKA_TOPIC_CONFIG,
-            Type.STRING,
-            Importance.HIGH,
-            KAFKA_TOPIC_DOC);
+        configDef
+                .define(
+                        FILE_NAME_PARAM_CONFIG,
+                        Type.STRING,
+                        Importance.HIGH,
+                        FILE_NAME_PARAM_DOC)
+                .define(
+                        KAFKA_TOPIC_CONFIG,
+                        Type.STRING,
+                        Importance.HIGH,
+                        KAFKA_TOPIC_DOC)
+                .define(
+                        MONITOR_THREAD_TIMEOUT_CONFIG,
+                        Type.INT,
+                        MONITOR_THREAD_TIMEOUT_DEFAULT,
+                        Importance.HIGH,
+                        MONITOR_THREAD_TIMEOUT_DOC);
     }
 
 }

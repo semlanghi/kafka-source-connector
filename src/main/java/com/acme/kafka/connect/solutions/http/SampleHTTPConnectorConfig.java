@@ -17,7 +17,7 @@ public class SampleHTTPConnectorConfig extends AbstractConfig {
     private static final String KAFKA_TOPIC_DOC = "This is the topic to write to.";
 
     public static final String FILE_URL_PARAM_CONFIG = "example.file.url";
-    private static final String FILE_NAME_PARAM_DOC = "This is the defined url of the file.";
+    private static final String FILE_URL_PARAM_DOC = "This is the defined url of the file.";
 
     public static final String MONITOR_THREAD_TIMEOUT_CONFIG = "monitor.thread.timeout";
     private static final String MONITOR_THREAD_TIMEOUT_DOC = "Timeout used by the monitoring thread";
@@ -32,22 +32,24 @@ public class SampleHTTPConnectorConfig extends AbstractConfig {
     }
 
     private static void addParams(final ConfigDef configDef) {
-        configDef.define(
-                FILE_URL_PARAM_CONFIG,
-            Type.STRING,
-            Importance.HIGH,
-            FILE_NAME_PARAM_DOC)
-        .define(
-            MONITOR_THREAD_TIMEOUT_CONFIG,
-            Type.INT,
-            MONITOR_THREAD_TIMEOUT_DEFAULT,
-            Importance.HIGH,
-            MONITOR_THREAD_TIMEOUT_DOC)
-        .define(
-            KAFKA_TOPIC_CONFIG,
-            Type.STRING,
-            Importance.HIGH,
-            KAFKA_TOPIC_DOC);
+        configDef
+                .define(
+                        FILE_URL_PARAM_CONFIG,
+                        Type.STRING,
+                        Importance.HIGH,
+                        FILE_URL_PARAM_DOC)
+
+                .define(
+                        KAFKA_TOPIC_CONFIG,
+                        Type.STRING,
+                        Importance.HIGH,
+                        KAFKA_TOPIC_DOC)
+                .define(
+                        MONITOR_THREAD_TIMEOUT_CONFIG,
+                        Type.INT,
+                        MONITOR_THREAD_TIMEOUT_DEFAULT,
+                        Importance.HIGH,
+                        MONITOR_THREAD_TIMEOUT_DOC);
     }
 
 }

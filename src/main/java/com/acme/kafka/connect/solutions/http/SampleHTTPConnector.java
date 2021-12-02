@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.acme.kafka.connect.solutions.file.SampleFileConnectorConfig.CONFIG_DEF;
+import static com.acme.kafka.connect.solutions.http.SampleHTTPConnectorConfig.CONFIG_DEF;
 
 public class SampleHTTPConnector extends SourceConnector {
 

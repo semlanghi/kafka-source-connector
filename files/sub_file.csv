@@ -999,3 +999,4 @@ id,type,fk_payment_id,reference
 23,monthly,823lvu130bur867f8,dgx-hxk-sbm-aes
 45,monthly,888xtw586plj637v9,qjv-htr-zhi-zuh
 18,weekly,461vbm674rqb308o4,nck-tqj-fmb-ojg
+42,weekly,differentFromRemote,nck-tqj-fmb-ojg

@@ -43,13 +43,13 @@ public class SampleHTTPSourceTask extends SourceTask {
         monitorThreadTimeout = config.getInt(MONITOR_THREAD_TIMEOUT_CONFIG);
         try {
 
-            URL url = new URL("https://github.com/semlanghi/kafka-source-connector/blob/master/files/sub_file.csv");
+            URL url = new URL(config.getString(SampleHTTPConnectorConfig.FILE_URL_PARAM_CONFIG));
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
             InputStream inputStream = urlConnection.getInputStream();
             csvReader = new CSVReader(new InputStreamReader(inputStream));
             csvReader.readNext();
-        } catch (CsvValidationException | IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
