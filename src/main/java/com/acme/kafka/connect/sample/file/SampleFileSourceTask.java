@@ -54,7 +54,9 @@ public class SampleFileSourceTask extends SourceTask {
 
         try {
             String[] value;
-            if((value = csvReader.readNext()) != null){
+            //CHECKSTYLE:OFF
+            if ((value = csvReader.readNext()) != null) {
+                //CHECKSTYLE:ON
                 records.add(new SourceRecord(
                         Collections.singletonMap("file", config.getString(SampleFileConnectorConfig.FILE_NAME_PARAM_CONFIG)),
                         Collections.singletonMap("offset", 0),
