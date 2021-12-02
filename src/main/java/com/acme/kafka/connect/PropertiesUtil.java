@@ -1,4 +1,4 @@
-package com.acme.kafka.connect.sample;
+package com.acme.kafka.connect;
 
 import java.io.InputStream;
 import java.util.Properties;

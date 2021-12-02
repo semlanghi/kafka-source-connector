@@ -1,6 +1,6 @@
-package com.acme.kafka.connect.sample.file;
+package com.acme.kafka.connect.solutions.file;
 
-import com.acme.kafka.connect.sample.PropertiesUtil;
+import com.acme.kafka.connect.PropertiesUtil;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 import org.apache.kafka.connect.data.Schema;
@@ -16,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import static com.acme.kafka.connect.sample.mysql.SampleMySQLConnectorConfig.*;
+import static com.acme.kafka.connect.solutions.file.SampleFileConnectorConfig.*;
 
 public class SampleFileSourceTask extends SourceTask {
 

@@ -1,6 +1,6 @@
-package com.acme.kafka.connect.sample.file;
+package com.acme.kafka.connect.solutions.http;
 
-import com.acme.kafka.connect.sample.PropertiesUtil;
+import com.acme.kafka.connect.PropertiesUtil;
 import org.apache.kafka.common.config.ConfigDef;
 import org.apache.kafka.connect.connector.Task;
 import org.apache.kafka.connect.source.SourceConnector;
@@ -12,14 +12,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.acme.kafka.connect.sample.file.SampleFileConnectorConfig.CONFIG_DEF;
+import static com.acme.kafka.connect.solutions.file.SampleFileConnectorConfig.CONFIG_DEF;
 
-public class SampleFileConnector extends SourceConnector {
+public class SampleHTTPConnector extends SourceConnector {
 
-    private final Logger log = LoggerFactory.getLogger(SampleFileConnector.class);
+    private final Logger log = LoggerFactory.getLogger(SampleHTTPConnector.class);
 
     private Map<String, String> originalProps;
-    private SampleFileConnectorConfig config;
+    private SampleHTTPConnectorConfig config;
 
 
     @Override
@@ -34,12 +34,12 @@ public class SampleFileConnector extends SourceConnector {
 
     @Override
     public Class<? extends Task> taskClass() {
-        return SampleFileSourceTask.class;
+        return SampleHTTPSourceTask.class;
     }
 
     @Override
     public void start(Map<String, String> originalProps) {
-        this.config = new SampleFileConnectorConfig(originalProps);
+        this.config = new SampleHTTPConnectorConfig(originalProps);
         this.originalProps = originalProps;
     }
 

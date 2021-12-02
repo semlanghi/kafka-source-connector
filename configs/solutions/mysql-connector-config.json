@@ -1,7 +1,7 @@
 {
-    "name": "mysql-example",
+    "name": "mysql-solutions",
     "config": {
-        "connector.class": "com.acme.kafka.connect.sample.mysql.SampleMySQLConnector",
+        "connector.class": "com.acme.kafka.connect.solutions.mysql.SampleMySQLConnector",
         "example.db.hostname": "db",
         "example.db.query": "SELECT * FROM subscription WHERE type='daily' LIMIT 100",
         "example.kafka.topic": "mytopic5",

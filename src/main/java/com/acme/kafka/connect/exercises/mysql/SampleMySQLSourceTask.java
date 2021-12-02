@@ -1,19 +1,21 @@
-package com.acme.kafka.connect.sample.mysql;
+package com.acme.kafka.connect.exercises.mysql;
 
-import java.sql.*;
+import com.acme.kafka.connect.PropertiesUtil;
+import org.apache.kafka.connect.data.Schema;
+import org.apache.kafka.connect.source.SourceRecord;
+import org.apache.kafka.connect.source.SourceTask;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import com.acme.kafka.connect.sample.PropertiesUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.apache.kafka.connect.data.Schema;
-import org.apache.kafka.connect.source.SourceRecord;
-import org.apache.kafka.connect.source.SourceTask;
-
-import static com.acme.kafka.connect.sample.mysql.SampleMySQLConnectorConfig.*;
+import static com.acme.kafka.connect.exercises.mysql.SampleMySQLConnectorConfig.MONITOR_THREAD_TIMEOUT_CONFIG;
 
 public class SampleMySQLSourceTask extends SourceTask {
 
@@ -34,14 +36,13 @@ public class SampleMySQLSourceTask extends SourceTask {
 
     @Override
     public void start(Map<String, String> properties) {
-        config = new SampleMySQLConnectorConfig(properties);
+        //TODO instantiate  connector config
         monitorThreadTimeout = config.getInt(MONITOR_THREAD_TIMEOUT_CONFIG);
         try {
-            connection = DriverManager.getConnection(
-                    "jdbc:mysql://" + config.getString(HOST_PARAM_CONFIG) + ":"
-                            + config.getInt(PORT_PARAM_CONFIG) + "/kafka_test",
-                    config.getString(USER_PARAM_CONFIG), config.getString(PASSWORD_PARAM_CONFIG));
-        } catch (SQLException e) {
+            //TODO create a connection (hint: JDBC protocol pattern is "jdbc:mysql://{host}:{port}/db")
+            connection = null;
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -50,22 +51,22 @@ public class SampleMySQLSourceTask extends SourceTask {
     public List<SourceRecord> poll() throws InterruptedException {
         Thread.sleep(monitorThreadTimeout);
         List<SourceRecord> records = new ArrayList<>();
-        String sql = config.getString(SQL_QUERY_CONFIG);
+        String sql = null; //TODO get the query
         try {
 
             if (offset > 0) {
-                sql = sql + " " + "OFFSET " + offset + ";";
+                //TODO add offset clause to avoid duplicates
             }
 
-            ResultSet set = connection.prepareStatement(sql).executeQuery();
+            ResultSet set = null; //TODO execute the query.
 
             while (set.next()) {
                 String value = "Data from " + sql + ": id " + set.getLong(1);
                 records.add(new SourceRecord(
-                        Collections.singletonMap("sql", sql),
+                        Collections.singletonMap(null, null),
                         Collections.singletonMap("offset", 0),
-                        config.getString(KAFKA_TOPIC_CONFIG), null, null, null, Schema.BYTES_SCHEMA,
-                        value.getBytes()));
+                        null, null, null, null, Schema.BYTES_SCHEMA,
+                        null));
                 offset++;
             }
         } catch (SQLException e) {

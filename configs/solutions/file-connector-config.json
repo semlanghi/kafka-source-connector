@@ -1,7 +1,7 @@
 {
-    "name": "file-example",
+    "name": "file-solutions",
     "config": {
-        "connector.class": "com.acme.kafka.connect.sample.file.SampleFileConnector",
+        "connector.class": "com.acme.kafka.connect.solutions.file.SampleFileConnector",
         "example.file.name": "sub_file.csv",
         "example.kafka.topic": "filetopic",
         "monitor.thread.timeout": 1000,

@@ -41,13 +41,13 @@ docker-compose logs -f connect
 Open a terminal to execute the following command for executing the mysql connector:
 
 ```bash
-curl -X POST -H "Content-Type:application/json" -d @examples/mysql-example.json http://localhost:8083/connectors
+curl -X POST -H "Content-Type:application/json" -d @configs/solutions/mysql-connector-config.json http://localhost:8083/connectors
 ```
 
 Open a terminal to execute the following command for executing the file connector:
 
 ```bash
-curl -X POST -H "Content-Type:application/json" -d @examples/file-example.json http://localhost:8083/connectors
+curl -X POST -H "Content-Type:application/json" -d @configs/solutions//file-connector-config.json http://localhost:8083/connectors
 ```
 
 ### 4 - Check the data in Kafka

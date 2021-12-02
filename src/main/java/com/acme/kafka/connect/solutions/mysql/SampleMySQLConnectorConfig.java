@@ -1,4 +1,4 @@
-package com.acme.kafka.connect.sample.mysql;
+package com.acme.kafka.connect.solutions.mysql;
 
 import java.util.Map;
 

@@ -1,4 +1,4 @@
-package com.acme.kafka.connect.sample.file;
+package com.acme.kafka.connect.solutions.file;
 
 import org.apache.kafka.common.config.AbstractConfig;
 import org.apache.kafka.common.config.ConfigDef;

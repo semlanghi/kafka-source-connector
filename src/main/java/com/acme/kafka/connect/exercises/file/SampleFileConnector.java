@@ -1,26 +1,25 @@
-package com.acme.kafka.connect.sample.mysql;
+package com.acme.kafka.connect.exercises.file;
+
+import com.acme.kafka.connect.PropertiesUtil;
+import org.apache.kafka.common.config.ConfigDef;
+import org.apache.kafka.connect.connector.Task;
+import org.apache.kafka.connect.source.SourceConnector;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.acme.kafka.connect.sample.PropertiesUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static com.acme.kafka.connect.solutions.file.SampleFileConnectorConfig.CONFIG_DEF;
 
-import org.apache.kafka.common.config.ConfigDef;
-import org.apache.kafka.connect.connector.Task;
-import org.apache.kafka.connect.source.SourceConnector;
+public class SampleFileConnector extends SourceConnector {
 
-import static com.acme.kafka.connect.sample.mysql.SampleMySQLConnectorConfig.*;
-
-public class SampleMySQLConnector extends SourceConnector {
-
-    private final Logger log = LoggerFactory.getLogger(SampleMySQLConnector.class);
+    private final Logger log = LoggerFactory.getLogger(SampleFileConnector.class);
 
     private Map<String, String> originalProps;
-    private SampleMySQLConnectorConfig config;
+    private SampleFileConnectorConfig config;
 
 
     @Override
@@ -35,12 +34,12 @@ public class SampleMySQLConnector extends SourceConnector {
 
     @Override
     public Class<? extends Task> taskClass() {
-        return SampleMySQLSourceTask.class;
+        return SampleFileSourceTask.class;
     }
 
     @Override
     public void start(Map<String, String> originalProps) {
-        this.config = new SampleMySQLConnectorConfig(originalProps);
+        //TODO instantiate connector properties
         this.originalProps = originalProps;
     }
 
