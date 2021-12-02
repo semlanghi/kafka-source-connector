@@ -1,7 +1,12 @@
-# Kafka Connect Sample MySQL Connector
+# Kafka Connect Sample Connectora
 
-This repo contains a sample mySQL Connector for Kafka. 
-The connector reads a table of subscriptions from a database, forwarding them to a kafka topics. 
+This repo contains few sample Connectors for Kafka. 
+
+The file connector reads a CSV file from disk and forwards it line-by-line to a kafka topics. 
+
+The HTTP connector reads a an API (which return a CSV) and forward the content to a kafka topics. 
+
+The mySQL connector reads a table of subscriptions from a database, forwarding them to a kafka topics. 
 
 ## Building the connector
 
